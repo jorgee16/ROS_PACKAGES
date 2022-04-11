@@ -1,0 +1,108 @@
+window
+(
+  size [ 635 666 ] # in pixels
+  scale 22.971   # pixels per meter
+  center [ -20.306  21.679 ]
+  rotate [ 0.000  0.000 ]
+  			
+  show_data 1              # 1=on 0=off
+)
+
+
+#define block model
+#(
+#  size [0.500 0.500 0.500]
+#  gui_nose 0
+#)
+
+define topurg ranger
+(
+	sensor( 			
+    range [ 0.1  5.0 ]
+    fov 270.25
+   samples 1081
+  )
+
+  # generic model properties
+  color "black"
+  size [ 0.10 0.10 0.100 ]
+)
+
+define roomba position
+(
+  size [0.33 0.330 0.250]
+  
+  block( 
+    points 16
+    point[0] [ 0.225 0.000 ]
+    point[1] [ 0.208 0.086 ]
+    point[2] [ 0.159 0.159 ]
+    point[3] [ 0.086 0.208 ]
+    point[4] [ 0.000 0.225 ]
+    point[5] [ -0.086 0.208 ]
+    point[6] [ -0.159 0.159 ]
+    point[7] [ -0.208 0.086 ]
+    point[8] [ -0.225 0.000 ]
+    point[9] [ -0.208 -0.086 ]
+    point[10] [ -0.159 -0.159 ]
+    point[11] [ -0.086 -0.208 ]
+    point[12] [ -0.000 -0.225 ]
+    point[13] [ 0.086 -0.208 ]
+    point[14] [ 0.159 -0.159 ]
+    point[15] [ 0.208 -0.086 ]
+    z [0 0.1]
+  )
+  
+  #origin [-0.050 0.000 0.000 0.000]
+  gui_nose 1
+  drive "diff"
+  topurg(pose [ 0.000 0.000 -0.1 0.000 ])
+)
+
+define floorplan model
+(
+  # sombre, sensible, artistic
+  color "gray30"
+
+  # most maps will need a bounding box
+  boundary 1
+
+  gui_nose 0
+  gui_grid 0
+
+  gui_outline 0
+  gripper_return 0
+  fiducial_return 0
+  ranger_return 1.000
+)
+
+# set the resolution of the underlying raytrace model in meters
+resolution 0.02
+
+interval_sim 100  # simulation timestep in milliseconds
+
+
+window
+( 
+  size [ 745 448 ] 
+
+  rotate [ 0.000 -1.560 ]
+  scale 28.806 
+)
+
+# load an environment bitmap
+floorplan
+( 
+  name "maze"
+  bitmap "laby01.pgm"
+  size [50.000 19.000 0.500]
+  pose [-0.0 +0.400 0.000 0.000 ]
+)
+
+# throw in a robot
+roomba ( 
+    pose [ 24.5 -5. 0.000 0.000 ] 
+    name "roomba" 
+    color "blue"
+)
+

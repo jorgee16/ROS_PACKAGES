@@ -1,0 +1,7 @@
+image: maze01.pgm
+resolution: 0.020000
+origin: [-10.800, -10.600, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+# maze is from: https://movingai.com/benchmarks/maze/maze512-32-3.png

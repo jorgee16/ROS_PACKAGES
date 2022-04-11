@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="map_server" type="map_server" name="map_server" args="$(find move_base_plugins)/world/maze01.yaml"/>
+    <include file="$(find move_base_plugins)/launch/amcl.launch">
+        <arg name="initial_pose_x" default="24.5"/>
+        <arg name="initial_pose_y" default="-5.0"/>
+        <arg name="initial_pose_a" default="0.0"/>
+        <!-- 24.5 -5.0  for laby -->
+        <!-- -4.0, 4.3  for the maze -->
+    </include>
+    <!--include file="$(find move_base_plugins)/launch/move_base.launch"/-->
+    
+    <node pkg="stage_ros" type="stageros" name="stageros" args="$(find move_base_plugins)/world/laby01.world" respawn="false">
+        <param name="/use_sim_time" value="true"/>
+        <param name="base_watchdog_timeout" value="0.2"/>
+        <remap from="base_scan" to="scan"/>
+  </node>
+</launch>

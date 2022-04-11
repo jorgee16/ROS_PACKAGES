@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<launch>
+ <!-- <master auto="start"/> -->
+
+<!-- BEGIN ROBOT 1 -->
+<group ns="sim_ros_interface/pioneer1">
+	  <arg name="tprefix" value="pioneer1"/>
+
+<node pkg="random_walk" type="random_walk" name="random_walk" output="screen" respawn="true">
+		<param name="max_linear_speed" value="0.25" />
+		<param name="max_angular_speed" value="3.0" />
+		<param name="safe_dist_th" value="1.5" />
+		<param name="detour_obst_th" value="0.8" />
+		<param name="stop_dist_th" value="0.65" />
+		<param name="diff_th" value="0.1" />
+		<param name="verbose" value="0" />
+		<param name="useLRF" value="0" />
+</node>
+
+<node pkg="fake_localization" type="fake_localization" name="fake_localization" output="screen">
+	<param name="global_frame_id" value="/map"/>
+  <param name="odom_frame_id" value="$(arg tprefix)/odom"/>
+  <param name="base_frame_id" value="$(arg tprefix)/base_link"/>
+  <remap from="base_pose_ground_truth" to="odom"/>-->
+</node>
+
+</group>
+<!-- END ROBOT 1 -->
+
+<!-- BEGIN ROBOT 2 -->
+<group ns="sim_ros_interface/pioneer2">
+	  <arg name="tprefix" value="pioneer2"/>
+
+<node pkg="random_walk" type="random_walk" name="random_walk" output="screen" respawn="true">
+		<param name="max_linear_speed" value="0.25" />
+		<param name="max_angular_speed" value="3.0" />
+		<param name="safe_dist_th" value="1.5" />
+		<param name="detour_obst_th" value="0.8" />
+		<param name="stop_dist_th" value="0.65" />
+		<param name="diff_th" value="0.1" />
+		<param name="verbose" value="0" />
+		<param name="useLRF" value="0" />
+</node>
+
+<node pkg="fake_localization" type="fake_localization" name="fake_localization" output="screen">
+	<param name="global_frame_id" value="/map"/>
+  <param name="odom_frame_id" value="$(arg tprefix)/odom"/>
+  <param name="base_frame_id" value="$(arg tprefix)/base_link"/>
+  <remap from="base_pose_ground_truth" to="odom"/>-->
+</node>
+
+</group>
+<!-- END ROBOT 2 -->
+
+<!-- BEGIN ROBOT 3 -->
+<group ns="sim_ros_interface/pioneer3">
+	  <arg name="tprefix" value="pioneer3"/>
+
+<node pkg="random_walk" type="random_walk" name="random_walk" output="screen" respawn="true">
+		<param name="max_linear_speed" value="0.25" />
+		<param name="max_angular_speed" value="3.0" />
+		<param name="safe_dist_th" value="1.5" />
+		<param name="detour_obst_th" value="0.8" />
+		<param name="stop_dist_th" value="0.65" />
+		<param name="diff_th" value="0.1" />
+		<param name="verbose" value="0" />
+		<param name="useLRF" value="0" />
+</node>
+
+<node pkg="fake_localization" type="fake_localization" name="fake_localization" output="screen">
+	<param name="global_frame_id" value="/map"/>
+  <param name="odom_frame_id" value="$(arg tprefix)/odom"/>
+  <param name="base_frame_id" value="$(arg tprefix)/base_link"/>
+  <remap from="base_pose_ground_truth" to="odom"/>-->
+</node>
+
+</group>
+<!-- END ROBOT 3 -->
+
+<!-- BEGIN ROBOT 4 -->
+<group ns="sim_ros_interface/pioneer4">
+	  <arg name="tprefix" value="pioneer4"/>
+
+<node pkg="random_walk" type="random_walk" name="random_walk" output="screen" respawn="true">
+		<param name="max_linear_speed" value="0.25" />
+		<param name="max_angular_speed" value="3.0" />
+		<param name="safe_dist_th" value="1.5" />
+		<param name="detour_obst_th" value="0.8" />
+		<param name="stop_dist_th" value="0.65" />
+		<param name="diff_th" value="0.1" />
+		<param name="verbose" value="0" />
+		<param name="useLRF" value="0" />
+</node>
+
+<node pkg="fake_localization" type="fake_localization" name="fake_localization" output="screen">
+	<param name="global_frame_id" value="/map"/>
+  <param name="odom_frame_id" value="$(arg tprefix)/odom"/>
+  <param name="base_frame_id" value="$(arg tprefix)/base_link"/>
+  <remap from="base_pose_ground_truth" to="odom"/>-->
+</node>
+
+</group>
+<!-- END ROBOT 4 -->
+</launch>

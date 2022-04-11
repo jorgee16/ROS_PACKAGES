@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+  <master auto="start"/>
+
+  <node pkg="stage_ros" type="stageros" name="stageros"
+args="$(find random_walk)/launch/1pioneer_building.world" respawn="false">
+  	<param name="/use_sim_time" value="true"/>
+    <param name="base_watchdog_timeout" value="0.2"/>
+    <remap from="base_scan" to="scan"/>
+  </node>
+
+<!--- Run the map server -->
+<node name="map_server" pkg="map_server" type="map_server"
+	args="$(find random_walk)/launch/building.png 0.025" respawn="false"/>
+
+<!--- load robot's URDF model -->
+<include file="$(find p3dx_description)/launch/p3dx_description.launch">
+	<!--<param name="tf_prefix" value="robot_0" />-->
+</include>
+
+<node pkg="fake_localization" type="fake_localization" name="fake_localization" output="screen">
+	<param name="odom_frame_id" value="odom" />
+	<param name="delta_x" value="0.0" />
+	<param name="delta_y" value="0.0" />
+	<param name="delta_yaw" value="0.0" />
+	<param name="global_frame_id" value="/map"/>
+</node>
+
+</launch>
